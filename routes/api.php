@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TourController;
 use App\Http\Controllers\Api\TravelController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\isEditor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,14 +26,15 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::apiResource('roles', RoleController::class);
+    Route::middleware(isAdmin::class)->apiResource('roles', RoleController::class);
 
-    Route::post('users', [UserController::class, 'store']);
+    Route::middleware(isAdmin::class)->post('users', [UserController::class, 'store']);
 
-    Route::put('travels/{id}', [TravelController::class, 'update']);
-    Route::post('travels', [TravelController::class, 'store']);
+    Route::middleware(isAdmin::class)->post('travels', [TravelController::class, 'store']);
 
-    Route::post('tours', [TourController::class, 'store']);
+    Route::middleware(isAdmin::class)->post('tours', [TourController::class, 'store']);
+
+    Route::middleware(isEditor::class)->put('travels/{id}', [TravelController::class, 'update']);
 });
 
 Route::get('travels', [TravelController::class, 'index']);
