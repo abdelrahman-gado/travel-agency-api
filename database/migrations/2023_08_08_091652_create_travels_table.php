@@ -17,7 +17,23 @@ return new class extends Migration {
             $table->string('name');
             $table->text('description');
             $table->integer('number_of_days');
+            $table->unsignedBigInteger('create_user_id')->nullable();
+            $table->unsignedBigInteger('update_user_id')->nullable();
             $table->timestamps();
+
+            $table
+                ->foreign('create_user_id')
+                ->references('id')
+                ->on('users')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
+
+            $table
+                ->foreign('update_user_id')
+                ->references('id')
+                ->on('users')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
