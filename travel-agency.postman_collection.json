@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "1bb7ed47-d509-4c79-8eac-4889327207fe",
+		"name": "travel-agency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "get all public travels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/travels"
+					},
+					"response": []
+				},
+				{
+					"name": "get all tours by slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/tours?slug=foobar&priceFrom=2&priceTo=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tours"
+							],
+							"query": [
+								{
+									"key": "slug",
+									"value": "foobar"
+								},
+								{
+									"key": "priceFrom",
+									"value": "2"
+								},
+								{
+									"key": "priceTo",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "3|1zAnng0IGye4HIyXDZxsKJU5dvx62Lo2m6oGMocT"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"editor@editor.com\",\n    \"password\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/roles/12"
+					},
+					"response": []
+				},
+				{
+					"name": "get all roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "1|i2ua2DRJ4FPmmypZiux7s1jOG1K1GdGdAXWIJkz0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "add users",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|wyuwUVipu8etN1AYeT1osaCGHaYNIs7iv9Fb9qcs"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"editor@editor.com\",\n    \"password\": \"editor\",\n    \"roles\": [2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "create travel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "3|1zAnng0IGye4HIyXDZxsKJU5dvx62Lo2m6oGMocT"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_public\": true,\n    \"slug\": \"new slug\",\n    \"name\": \"hello world 12\",\n    \"description\": \"hello world hello world\",\n    \"number_of_days\": 30\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/travels"
+					},
+					"response": []
+				},
+				{
+					"name": "create tour",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "3|1zAnng0IGye4HIyXDZxsKJU5dvx62Lo2m6oGMocT"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"travel_id\": 3,\n    \"name\": \"barfoooo\",\n    \"starting_date\": \"2023-08-01\",\n    \"ending_date\": \"2023-08-15\",\n    \"price\": 99900\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/tours"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "editor",
+			"item": [
+				{
+					"name": "update travel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|dk0e2FNtKiWamtJav58V1g6vBRf8t4xKS275MmK4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_public\": false,\n    \"slug\": \"foobar\",\n    \"name\": \"hello world\",\n    \"description\": \"hello world hello world\",\n    \"number_of_days\": 29\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/travels/1?_method=PUT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"travels",
+								"1"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
