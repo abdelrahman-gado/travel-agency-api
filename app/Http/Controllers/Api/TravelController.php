@@ -36,6 +36,9 @@ class TravelController extends Controller
                 'number_of_days' => 'required|integer'
             ]);
 
+            $validated['create_user_id'] = $request->user()->id;
+            $validated['update_user_id'] = null;
+
             $travel = Travel::create($validated);
 
             return response()->json($travel);
@@ -79,6 +82,7 @@ class TravelController extends Controller
             $travel->name = $validated['name'];
             $travel->description = $validated['description'];
             $travel->number_of_days = $validated['number_of_days'];
+            $travel->update_user_id = $request->user()->id;
 
             $travel->save();
 
