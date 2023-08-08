@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 
 class RoleController extends Controller
@@ -14,6 +15,13 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('isAdmin')) {
+            return response()->json(
+                ["message" => "you don't have permission to create users"],
+                403
+            );
+        }
+
         $roles = Role::paginate(10);
 
         return response()->json($roles);
@@ -24,6 +32,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('isAdmin')) {
+            return response()->json(
+                ["message" => "you don't have permission to create users"],
+                403
+            );
+        }
+
         try {
             $validated = $request->validate([
                 'name' => 'required|string'
@@ -45,6 +60,13 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!Gate::allows('isAdmin')) {
+            return response()->json(
+                ["message" => "you don't have permission to create users"],
+                403
+            );
+        }
+
         $role = Role::find($id);
 
         if (!$role) {
