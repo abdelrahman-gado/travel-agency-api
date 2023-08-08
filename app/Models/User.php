@@ -64,4 +64,24 @@ class User extends Authenticatable
     {
         return (bool) $this->roles()->find($roleId);
     }
+
+    /**
+     * check if user has admin role
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        $adminRole = Role::where('name', 'admin')->first();
+        return $this->hasRole($adminRole->id);
+    }
+
+    /**
+     * check if user has editor role
+     * @return bool
+     */
+    public function isEditor()
+    {
+        $editorRole = Role::where('name', 'editor')->first();
+        return $this->hasRole($editorRole->id);
+    }
 }
