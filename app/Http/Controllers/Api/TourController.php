@@ -28,13 +28,13 @@ class TourController extends Controller
         }
 
         if ($request->has('priceFrom')) {
-            $price = ((int) $request->input('priceFrom')) * 100;
-            $tours = $tours->where('price', '>=', $price);
+            $priceFrom = ((int) $request->input('priceFrom')) * 100;
+            $tours = $tours->where('price', '>=', $priceFrom);
         }
 
         if ($request->has('priceTo')) {
-            $price = ((int) $request->input('priceTo')) * 100;
-            $tours = $tours->where('price', '<', $price);
+            $priceTo = ((int) $request->input('priceTo')) * 100;
+            $tours = $tours->where('price', '<', $priceTo);
         }
 
         if ($request->has('dateFrom')) {
