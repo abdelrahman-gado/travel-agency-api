@@ -47,7 +47,10 @@ class TourController extends Controller
             $tours = $tours->where('ending_date', '<', $dateTo);
         }
 
-        $tours = $tours->orderBy('starting_date', 'asc')->orderBy('price', 'asc')->get();
+        $tours = $tours
+            ->orderBy('starting_date', 'asc')
+            ->orderBy('price', 'asc')
+            ->paginate(10);
 
         return response()->json($tours);
     }
