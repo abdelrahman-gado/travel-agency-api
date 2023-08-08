@@ -18,8 +18,8 @@ class isEditor
     {
         if (!Gate::allows('isEditor')) {
             return response()->json(
-                ["message" => "Unauthorized"],
-                401
+                ["message" => "Forbidden, you don't have the role"],
+                403
             );
         }
 
