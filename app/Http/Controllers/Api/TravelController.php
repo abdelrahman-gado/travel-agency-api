@@ -26,13 +26,6 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Gate::allows('isAdmin')) {
-            return response()->json(
-                ["message" => "you don't have permission to create travels (admins only)"],
-                403
-            );
-        }
-
         try {
 
             $validated = $request->validate([
@@ -59,13 +52,6 @@ class TravelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!Gate::allows('isEditor')) {
-            return response()->json(
-                ["message" => "you don't have permission to update travels (editors only)"],
-                403
-            );
-        }
-
         try {
 
             $travel = Travel::find($id);

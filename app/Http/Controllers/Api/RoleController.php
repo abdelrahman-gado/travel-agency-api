@@ -15,13 +15,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('isAdmin')) {
-            return response()->json(
-                ["message" => "you don't have permission to create users"],
-                403
-            );
-        }
-
         $roles = Role::paginate(10);
 
         return response()->json($roles);
@@ -32,13 +25,6 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Gate::allows('isAdmin')) {
-            return response()->json(
-                ["message" => "you don't have permission to create users"],
-                403
-            );
-        }
-
         try {
             $validated = $request->validate([
                 'name' => 'required|string'
@@ -60,13 +46,6 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Gate::allows('isAdmin')) {
-            return response()->json(
-                ["message" => "you don't have permission to create users"],
-                403
-            );
-        }
-
         $role = Role::find($id);
 
         if (!$role) {

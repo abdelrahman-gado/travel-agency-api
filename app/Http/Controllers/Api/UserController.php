@@ -18,13 +18,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Gate::allows('isAdmin')) {
-            return response()->json(
-                ["message" => "you don't have permission to create users"],
-                403
-            );
-        }
-
         try {
 
             $validated = $request->validate([
