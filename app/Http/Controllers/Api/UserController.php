@@ -14,7 +14,7 @@ class UserController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in database.
      */
     public function store(Request $request)
     {

@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 class RoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the roles.
      */
     public function index()
     {
@@ -28,7 +28,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created roles in database.
      */
     public function store(Request $request)
     {
@@ -56,7 +56,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified role from database.
      */
     public function destroy(string $id)
     {

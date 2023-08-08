@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
+    /**
+     * log in a user
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
